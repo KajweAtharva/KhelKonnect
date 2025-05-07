@@ -5,7 +5,7 @@ import Badminton from "../assets/images/Badminton.png";
 import Cricket from "../assets/images/Cricket.png";
 import Football from "../assets/images/Football.png";
 import Chess from "../assets/images/Chess.png";
-
+import logo from "../assets/images/logo.jpg"
 
 
 
@@ -75,8 +75,7 @@ export default function LandingPage() {
           fontWeight: 'bold'
         }}
       >
-        <div style={{ fontWeight: "bold", color: "#00BE76", fontSize: "1.7rem", 
-          alignItems: "center"}}>KhelKonnect</div>
+        <img src= {logo} style={{ alignItems: "center", width:"160px"}}></img>
         <div  style={{ alignItems: "start", padding: "8px 80px"}}>
         <nav>
           <a href="#" style={{ margin: "0 12px", textDecoration: "none", color: "#222", fontSize: "1.2rem" }}>Play</a>
