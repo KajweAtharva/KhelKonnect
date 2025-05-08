@@ -6,6 +6,7 @@ import Cricket from "../assets/images/Cricket.png";
 import Football from "../assets/images/Football.png";
 import Chess from "../assets/images/Chess.png";
 import logo from "../assets/images/logo.jpg"
+import { useState, useEffect } from "react";
 
 
 
@@ -50,7 +51,19 @@ const sports = [
 
 export default function LandingPage() {
   // Responsive helper
-  const isMobile = window.innerWidth <= 600;
+  //const isMobile = window.innerWidth <= 600;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 600);
+  };
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+
 
   return (
     <div
@@ -66,37 +79,48 @@ export default function LandingPage() {
       {/* HEADER */}
       <header
         style={{
-          width: "100%",
+          width: isMobile? "100%": "100%",
+          height:"100%",
           boxSizing: "border-box",
           display: "flex",
-          padding: isMobile ? "12px 8px" : "35px 40px",
+          padding: isMobile ? "12px 8px" : "25px 10px",
           background: "#fff",
           borderBottom: "1px solid #e0e0e0",
           fontWeight: 'bold'
         }}
       >
         <img src= {logo} style={{ alignItems: "center", width:"160px"}}></img>
-        <div  style={{ alignItems: "start", padding: "8px 80px"}}>
+        <div  style={{
+            alignItems: isMobile ? "center" : "start",
+            padding: isMobile ? "8px" : "8px 80px",
+            marginTop: isMobile? "5px" : "0px",
+            textAlign: isMobile ? "center" : "left",
+          }}>
         <nav>
-          <a href="#" style={{ margin: "0 12px", textDecoration: "none", color: "#222", fontSize: "1.2rem" }}>Play</a>
-          <a href="#" style={{ margin: "0 12px", textDecoration: "none", color: "#222", fontSize: "1.2rem" }}>Book</a>
-          <a href="#" style={{ margin: "0 12px", textDecoration: "none", color: "#222", fontSize: "1.2rem" }}>About Us</a>
-          <a href="#" style={{ margin: "0 12px", textDecoration: "none", color: "#222", fontSize: "1.2rem" }}>Contact Us</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>Play</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>Book</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>About Us</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>Contact Us</a>
         </nav>
         </div>
-        <div style={{ flex: 1, display: "flex", justifyContent: "flex-end", padding: "8px"}}>
-          <a href="#" style={{ textDecoration: "none", color: "#222", fontSize: "1.2rem"}}>👤Login/Sign Up</a>
+        <div style={{ flex: 1,
+            display: "flex",
+            justifyContent: isMobile ? "center" : "flex-end",
+            padding: isMobile? "12px" :"8px",
+            marginTop: isMobile? "5px":"0px"}}>
+          <a href="#" style={{ textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem"}}>👤Login/Sign Up</a>
         </div>
       </header>
 
       {/* HERO SECTION */}
       <section
         style={{
-          width: "100%",
-          boxSizing: "border-box",
-          background: "#fff",
-          padding: isMobile ? "5px 8px 18px 8px" : "5px 40px 24px 40px",
-          borderBottom: "1px solid #e0e0e0",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: isMobile ? "center" : "start",
+          textAlign: isMobile ? "center" : "left",
+          marginBottom: 14,
+          width: isMobile ? "100%" : "100vh"
         }}
       >
         <div
@@ -106,18 +130,19 @@ export default function LandingPage() {
             alignItems: "center",
             justifyContent: "space-between",
             gap: isMobile ? 24 : 0,
+            backgroundImage: isMobile? `url(${GetStarted})` : 'none',
+            height: isMobile? "500px" : "",
           }}
         >
           <div style={{ flex: 0 ,
-            padding: isMobile? "0px" :"25px"
+            padding: isMobile? "0px" :"25px",
+            
           }}>
-            <div style={{ display: "flex", alignItems: "center", marginBottom: 14 ,
-              
-             }}>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: isMobile? 9:14 , justifyContent:isMobile? "center":"left", marginTop:isMobile? "150px" : "0px" }}>
               <span style={{ marginTop: 7, marginRight: 0 }}>
                 <img src={ Location } alt="Location" 
                   style={{
-                    maxWidth: "32px"
+                    maxWidth: isMobile? "25px" : "35px"
                   }}
                 />
               </span>
@@ -130,58 +155,59 @@ export default function LandingPage() {
                   border: "1px solid #ccc",
                   borderRadius: 15,
                   padding: "5px 14px",
-                  fontSize: "1.5rem",
-                  background: "#fff",
-                  width: 200,
-                  height: 50,
+                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: isMobile? "0.9rem" : "1.5rem",
+                  height: isMobile?"100%" : "50px",
                   fontWeight: 'bold',
-                  boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)'
+                  boxShadow: '1px 1px 4px rgba(82, 82, 82, 0.3)'
                 }}
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column" ,alignItems: "start", marginBottom: 14, width: "100vh"}}>
-                <h1
-                  style={{
-                    color: "#00BE76",
-                    fontSize: isMobile ? "1.4rem" : "3.5rem",
-                    marginTop: 50,
-                    marginBottom: 8 ,
-                    fontWeight: 'bold'
-                  }}
-                >
-                  GEAR UP A BIG GAME
-                </h1>
-                <p style={{ color: "black", fontWeight: 500, marginBottom: 18, 
-                    marginTop: 4,
-                    fontSize: "2rem", 
-                    fontWeight: 'bold' }}>Have Fun with Friends!</p>
-                <a>
-                <button
-                  style={{
-                    alignContent: "flex-start",
-                    background: "#00BE76",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: 15,
-                    padding: "15px 150px",
-                    fontSize: "1.5rem",
-                    cursor: "pointer",
-                    fontWeight: 'bold'
-                  }}
-                >
-                  Get Started
-                </button>
-                </a>
+            <div style={{ display: "flex", flexDirection: "column" ,alignItems: isMobile? "center": "start", marginBottom: 14, width: "100vh", }}>
+                <div style={{ width: "fit-content", height: "fit-content", borderRadius: 32, backgroundColor:isMobile? 'rgba(255, 255, 255, 0.7)' : ''}}>
+                        <h1
+                          style={{
+                            color: isMobile? "Black" : "#00BE67",
+                            fontSize: isMobile ? "1.7rem" : "3.5rem",
+                            marginTop: isMobile? 25: 50,
+                            marginBottom: 8 ,
+                            fontWeight: 'bold',
+                            padding: isMobile? '0.5rem 1rem': '',
+                          }}
+                        >
+                          GEAR UP A BIG GAME
+                        </h1>
+                        <p style={{ color: "black", fontWeight: 500, marginBottom: 18, 
+                            marginTop: 4,
+                            fontSize: isMobile? "1rem" : "2rem", 
+                            fontWeight: 'bold' }}>Have Fun with Friends!</p>
+                        <a>
+                        <button
+                          style={{
+                            alignContent: "flex-start",
+                            backgroundColor: "#00BE67",
+                            color: isMobile? "#000": "#fff",
+                            border: "none",
+                            borderRadius: 15,
+                            padding: isMobile ? "12px 50px" : "15px 150px",
+                            fontSize: isMobile? "1.2rem" : "1.5rem",
+                            cursor: "pointer",
+                            fontWeight: 'bold',
+                            marginBottom: isMobile? 25 : 0,
+                          }}
+                        >
+                          Get Started
+                        </button>
+                        </a>
+                </div>
               </div>
           </div>
-          <div style={{ flex: 1, display: "flex", justifyContent: "center", padding:"0px" }}>
+          <div style={{ flex: 1, display:isMobile? "none" : "flex", justifyContent: "center", padding:"0px",width:isMobile? "0" : "100%", height: isMobile? "0" : "100%" }}>
             <img
               src={GetStarted}
               alt="Get Started"
               style={{
-                maxWidth: "100%",
-                marginTop: isMobile ? 24 : 0,
-                marginRight: "80px",
+                marginTop: isMobile ? 0 : 0,
               }}
             />
           </div>
@@ -191,11 +217,11 @@ export default function LandingPage() {
       {/* BOOK PLACES */}
       <section
         style={{
-          width: "90%",
+          width:isMobile? "100%" : "90%",
           boxSizing: "border-box",
           background: "#fff",
-          margin: isMobile ? "16px 0" : "100px 5% 0px 5%",
-          padding: isMobile ? "18px 8px" : "24px 40px",
+          margin: isMobile ? "16px 0" : "10px 5% 0px 5%",
+          padding: isMobile ? "18px 18px" : "24px 20px",
           borderRadius: 12,
         }}
       >
@@ -220,8 +246,8 @@ export default function LandingPage() {
             display: "flex",
             flexWrap: "wrap",
             gap: 18,
-            width: "100%",
-            justifyContent: isMobile ? "center" : "flex-start",
+            width: "90%",
+            justifyContent: isMobile ? "end" : "flex-start",
           }}
           className="overflow-x-auto whitespace-nowrap"
         >
@@ -244,8 +270,8 @@ export default function LandingPage() {
                 alt={place.name}
                 style={{
                   width: "100%",
-                  height: 210,
-                  objectFit: "cover",
+                  height: isMobile? 310: 210,
+                  objectFit: "fill",
                 }}
               />
               <div style={{ padding: 10 }}>
@@ -255,6 +281,9 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
+
+
+      {/* POPULAR SPORTS */}
 
         <div
           style={{
@@ -288,7 +317,7 @@ export default function LandingPage() {
                 background: "#f8f8f8",
                 borderRadius: 10,
                 overflow: "hidden",
-                maxWidth: "100%",
+                maxWidth: isMobile? "100%" : "23%",
                 boxShadow: ' 2px 2px 5px rgba(0, 0, 0, 0.3)',
                 marginBottom: isMobile ? 12 : 0,
                 flex: isMobile ? "1 1 100%" : "1 1 260px",
@@ -301,7 +330,7 @@ export default function LandingPage() {
                   
                   width: "100%",
                   height: 310,
-                  objectFit: "cover",
+                  objectFit:"cover",
                 }}
               />
               <div style={{ padding: 8, textAlign: "center", color: "black",fontWeight: "bold", }}>{sport.name}</div>
@@ -312,14 +341,13 @@ export default function LandingPage() {
 
       </section>
 
-      {/* POPULAR SPORTS */}
 
       {/* FOOTER */}
       <footer
         style={{
           width: "100%",
           background: "#e9f8f3",
-          padding: isMobile ? 16 : 40,
+          padding: isMobile ? 8 : 40,
           marginTop: isMobile ? 16 : 32,
           borderRadius: 12,
           boxSizing: "border-box",
@@ -333,17 +361,17 @@ export default function LandingPage() {
           style={{
             display: "flex",
             flexWrap: "wrap",
+            flexDirection: "row",
             justifyContent: isMobile ? "flex-start" : "space-between",
             gap: isMobile ? 16 : 0,
+            fontSize: isMobile?"0.6rem":""
           }}
         >
-          <div>
-            <div style={{ color: "#00BE67", fontWeight: "bold", fontSize: "1.2rem", marginBottom: 8 }}>
-              KhelKonnect
+            <div style={{ marginTop: isMobile? "12px":""  , justifyContent:"center" }}>
+              <img src= {logo} style={{height: isMobile? "50px" : "120px", width: isMobile? "170px" : "350px"}} />
             </div>
-          </div>
           
-          <div  style={{ color: "black",fontWeight: 500, minWidth: 120  }}>
+          <div  style={{ color: "black",fontWeight: 500, minWidth: 120 }}>
             <div style={{ fontWeight: "bold" }}>Company</div>
             <div>ABOUT US</div>
             <div>LEARN</div>
