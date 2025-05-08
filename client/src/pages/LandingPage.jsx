@@ -56,7 +56,7 @@ export default function LandingPage() {
 
 useEffect(() => {
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 600);
+    setIsMobile(window.innerWidth <= 420);
   };
 
   window.addEventListener("resize", handleResize);
@@ -83,13 +83,13 @@ useEffect(() => {
           height:"100%",
           boxSizing: "border-box",
           display: "flex",
-          padding: isMobile ? "12px 8px" : "25px 10px",
+          padding: isMobile ? "5px 8px" : "25px 10px",
           background: "#fff",
           borderBottom: "1px solid #e0e0e0",
           fontWeight: 'bold'
         }}
       >
-        <img src= {logo} style={{ alignItems: "center", width:"160px"}}></img>
+        <img src= {logo} style={{ alignItems: "center", width:isMobile? "55px" : "160px", height: isMobile? "20px":"", paddingTop:isMobile? "18px":""}}></img>
         <div  style={{
             alignItems: isMobile ? "center" : "start",
             padding: isMobile ? "8px" : "8px 80px",
@@ -97,18 +97,18 @@ useEffect(() => {
             textAlign: isMobile ? "center" : "left",
           }}>
         <nav>
-          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>Play</a>
-          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>Book</a>
-          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>About Us</a>
-          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem" }}>Contact Us</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.45rem": "1.2rem" }}>Play</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.45rem": "1.2rem" }}>Book</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.45rem": "1.2rem" }}>About Us</a>
+          <a href="#" style={{ margin: isMobile? "10px 12px" :"0px 12px", textDecoration: "none", color: "#222", fontSize: isMobile?"0.45rem": "1.2rem" }}>Contact Us</a>
         </nav>
         </div>
         <div style={{ flex: 1,
             display: "flex",
             justifyContent: isMobile ? "center" : "flex-end",
-            padding: isMobile? "12px" :"8px",
+            padding: isMobile? "18px" :"8px",
             marginTop: isMobile? "5px":"0px"}}>
-          <a href="#" style={{ textDecoration: "none", color: "#222", fontSize: isMobile?"0.8rem": "1.2rem"}}>👤Login/Sign Up</a>
+          <a href="#" style={{ textDecoration: "none", color: "#222", fontSize: isMobile?"0.4rem": "1.2rem"}}>👤Login/Sign Up</a>
         </div>
       </header>
 
@@ -131,12 +131,16 @@ useEffect(() => {
             justifyContent: "space-between",
             gap: isMobile ? 24 : 0,
             backgroundImage: isMobile? `url(${GetStarted})` : 'none',
+            backgroundSize: isMobile? "cover":"",
+            backgroundPosition:isMobile?"center":"",
+            backgroundRepeat:isMobile? "no-repeat":"",
+            overflow:"hidden",
             height: isMobile? "500px" : "",
+            width:isMobile?"370px":""
           }}
         >
           <div style={{ flex: 0 ,
             padding: isMobile? "0px" :"25px",
-            
           }}>
             <div style={{ display: "flex", alignItems: "center", marginBottom: isMobile? 9:14 , justifyContent:isMobile? "center":"left", marginTop:isMobile? "150px" : "0px" }}>
               <span style={{ marginTop: 7, marginRight: 0 }}>
@@ -368,10 +372,10 @@ useEffect(() => {
           }}
         >
             <div style={{ marginTop: isMobile? "12px":""  , justifyContent:"center" }}>
-              <img src= {logo} style={{height: isMobile? "50px" : "120px", width: isMobile? "170px" : "350px"}} />
+              <img src= {logo} style={{height: isMobile? "100%" : "120px", width: isMobile? "100%" : "350px"}} />
             </div>
           
-          <div  style={{ color: "black",fontWeight: 500, minWidth: 120 }}>
+          <div  style={{ color: "black",fontWeight: 500, minWidth: 100 }}>
             <div style={{ fontWeight: "bold" }}>Company</div>
             <div>ABOUT US</div>
             <div>LEARN</div>
@@ -379,14 +383,14 @@ useEffect(() => {
             <div>CAREERS</div>
             <div>PARTNER WITH US</div>
           </div>
-          <div style={{ color: "black",fontWeight: 500, minWidth: 120 }}>
+          <div style={{ color: "black",fontWeight: 500, minWidth: 100 }}>
             <div style={{ fontWeight: "bold" }}>Social</div>
             <div>INSTAGRAM</div>
             <div>FACEBOOK</div>
             <div>LINKEDIN</div>
             <div>TWITTER</div>
           </div>
-          <div style={{ color: "black",fontWeight: 500, minWidth: 120 }}>
+          <div style={{ color: "black",fontWeight: 500, minWidth: 100 }}>
             <div style={{ fontWeight: "bold" }}>Privacy & Terms</div>
             <div>PRIVACY POLICY</div>
             <div>TERMS OF SERVICE</div>
